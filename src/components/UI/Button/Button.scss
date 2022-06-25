@@ -1,0 +1,83 @@
+$primary-color: rgba(23, 101, 191, 100);
+$primary-color-opacity: rgba(23, 101, 191, 0);
+$danger-color: rgba(255, 82, 82, 100);
+$danger-color-opacity: rgba(255, 82, 82, 0);
+$success-color: rgba(5, 150, 104, 100);
+$success-color-opacity: rgba(5, 150, 104, 0);
+$warning-color: rgba(250, 117, 22, 100);
+$warning-color-opacity: rgba(250, 117, 22, 0);
+
+
+
+
+.custom-btn {
+  display: block;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  color: white;
+  transition: all 200ms;
+  &:hover{
+    filter: brightness(140%);
+  }
+  &:active{
+    filter: brightness(180%);
+  }
+  &:disabled{
+    filter: brightness(60%);
+  }
+  &.primary {
+    border: 1px solid $primary-color;
+    background-color: $primary-color;
+  }
+  &.warning {
+    border: 1px solid $warning-color;
+    background-color: $warning-color;
+  }
+  &.success {
+    border: 1px solid $success-color;
+    background-color: $success-color;
+  }
+  &.danger {
+    border: 1px solid $danger-color;
+    background-color: $danger-color;
+  }
+  &.outlined {
+    background-color: transparent;
+  }
+  &.large {
+    font-size: 1.4em;
+  }
+  &.min {
+    font-size: 0.7em;
+  }
+  &.block {
+    width: 100%;
+  }
+  &.text{
+    background-color: $primary-color-opacity;
+    border: $primary-color-opacity;
+    &:hover{
+      background-color: $primary-color;
+    }
+  }
+
+}
+
+.custom-btn_loader {
+  height: 1em;
+  width: 1em;
+  border: 1px solid white;
+  border-radius: 100%;
+  border-top: none;
+  border-left: none;
+  animation: rotating 500ms linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

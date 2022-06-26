@@ -1,0 +1,17 @@
+.post-card {
+  background: cornflowerblue;
+  padding: 0.5em 1em;
+  border-radius: 1em;
+  font-family: Helvetica sans-serif;
+  margin-bottom: 1em;
+  box-shadow: 3px 2px 5px 3px grey;
+}
+.post-card--title {
+  text-align: center;
+}
+.post-card--body {}
+.post-card--btns {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1em 0;
+}

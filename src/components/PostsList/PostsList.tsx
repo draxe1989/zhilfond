@@ -1,6 +1,9 @@
 import React, {FC, useEffect} from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
+import PostCard from "../PostCard/PostCard";
+import DeleteModal from "../DeleteModal/DeleteModal";
+import ChangeModal from "../ChangeModal/ChangeModal";
 import {
     changeCurrentBodyAC,
     changeCurrentTitleAC,
@@ -12,9 +15,7 @@ import {
     openChangeModalAC,
     openDeleteModalAC
 } from "../../store/action-creators/posts";
-import PostCard from "../PostCard/PostCard";
-import DeleteModal from "../DeleteModal/DeleteModal";
-import ChangeModal from "../ChangeModal/ChangeModal";
+
 
 
 const PostsList: FC = () => {
@@ -27,40 +28,50 @@ const PostsList: FC = () => {
         currentBody,
         currentTitle
     } = useTypedSelector(state => state.posts)
+
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchPosts())
     }, [])
+
     const openDeleteModal = (id: number) => {
         dispatch(openDeleteModalAC(id))
     }
+
     const closeDeleteModal = () => {
         dispatch(closeDeleteModalAC())
     }
+
     const deletePost = () => {
         dispatch(deletePostAC())
     }
+
     const closeChangeModal = () => {
         dispatch(closeChangeModalAC())
     }
+
     const openChangeModal = (id: number, title:string, body:string) => {
         dispatch(openChangeModalAC(id, title, body))
     }
+
     const changePost = () => {
         dispatch(changePostAC())
     }
+
     const changeCurrentTitle = (title: string) => {
         dispatch(changeCurrentTitleAC(title))
     }
+
     const changeCurrentBody = (body: string) => {
         dispatch(changeCurrentBodyAC(body))
     }
 
     if (loading) {
-        return <h1>LOADING</h1>
+        return <h1>LOADING...</h1>
     }
     if (error) {
-        return <h1>ERROR</h1>
+        return <h1>ERROR TO FETCH POSTS!</h1>
     }
     return (
         <div>

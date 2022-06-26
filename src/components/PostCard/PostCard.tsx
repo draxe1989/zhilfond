@@ -1,4 +1,6 @@
 import React, {FC} from 'react';
+import Button, {ButtonType} from "../UI/Button/Button";
+import './PostCard.scss'
 
 interface PostCardProps {
     post: {
@@ -7,19 +9,20 @@ interface PostCardProps {
         body: string,
         userId?: number
     }
-    openDeleteModal: (id:number)=>void
-    openChangeModal: (id:number, title:string, body:string)=>void
+    openDeleteModal: (id: number) => void
+    openChangeModal: (id: number, title: string, body: string) => void
 }
 
 const PostCard: FC<PostCardProps> = ({post, openDeleteModal, openChangeModal}) => {
     const {id, title, body} = post
     return (
-        <div>
-            <h1>{id}</h1>
-            <h3>{title}</h3>
-            <p>{body}</p>
-            <button onClick={()=>openChangeModal(id, title, body)}>CHANGE</button>
-            <button onClick={()=>openDeleteModal(id)}>DELETE</button>
+        <div className={'post-card'}>
+            <h3 className={'post-card--title'}>{title}</h3>
+            <p className={'post-card--body'}>{body}</p>
+            <div className={'post-card--btns'}>
+                <Button onClick={() => openChangeModal(id, title, body)}>CHANGE</Button>
+                <Button type={ButtonType.danger} onClick={() => openDeleteModal(id)}>DELETE</Button>
+            </div>
         </div>
     );
 };

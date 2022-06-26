@@ -2,6 +2,54 @@ export enum PostsActionTypes {
     FETCH_POSTS = 'FETCH_POSTS',
     FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS',
     FETCH_POSTS_ERROR = 'FETCH_POSTS_ERROR',
+
+    OPEN_DELETE_MODAL = 'OPEN_DELETE_MODAL',
+    CLOSE_DELETE_MODAL = 'CLOSE_DELETE_MODAL',
+    DELETE_POST = 'DELETE_POST',
+
+    OPEN_CHANGE_MODAL = 'OPEN_CHANGE_MODAL',
+    CLOSE_CHANGE_MODAL = 'CLOSE_CHANGE_MODAL',
+
+    CHANGE_CURRENT_TITLE = 'CHANGE_CURRENT_TITLE',
+    CHANGE_CURRENT_BODY = 'CHANGE_CURRENT_BODY',
+    CHANGE_POST = 'CHANGE_POST',
+}
+
+interface ChangeCurrentBodyAction {
+    type: PostsActionTypes.CHANGE_CURRENT_BODY,
+    payload: string
+}
+
+interface ChangeCurrentTitleAction {
+    type: PostsActionTypes.CHANGE_CURRENT_TITLE,
+    payload: string
+}
+
+interface ChangePostAction {
+    type: PostsActionTypes.CHANGE_POST
+}
+
+interface OpenChangeModalAction {
+    type: PostsActionTypes.OPEN_CHANGE_MODAL,
+    payload: number
+}
+
+interface CloseChangeModalAction {
+    type: PostsActionTypes.CLOSE_CHANGE_MODAL,
+}
+
+interface OpenDeleteModalAction {
+    type: PostsActionTypes.OPEN_DELETE_MODAL,
+    payload: number
+}
+
+interface CloseDeleteModalAction {
+    type: PostsActionTypes.CLOSE_DELETE_MODAL,
+}
+
+interface DeletePostAction {
+    type: PostsActionTypes.DELETE_POST,
+    payload: number
 }
 
 interface FetchUsersAction {
@@ -18,10 +66,33 @@ interface FetchUsersErrorAction {
     payload: string
 }
 
-export type PostsAction = FetchUsersAction | FetchUsersSuccesAction | FetchUsersErrorAction | any
+export type PostsAction =
+    CloseDeleteModalAction
+    | DeletePostAction
+    | OpenDeleteModalAction
+    | FetchUsersAction
+    | FetchUsersSuccesAction
+    | FetchUsersErrorAction
+    | ChangeCurrentBodyAction
+    | ChangeCurrentTitleAction
+    | ChangePostAction
+    | OpenChangeModalAction
+    | CloseChangeModalAction
+    | any
 
 export interface PostState {
-    posts: any[],
+    posts: Post[],
     loading: boolean
-    error: null | string
+    error: null | string,
+    isDeleteModalOpen: boolean,
+    currentPost: number,
+    isChangeModalOpen: boolean,
+    currentTitle: string,
+    currentBody: string,
+}
+
+export interface Post {
+    id: number
+    title: string
+    body: string
 }

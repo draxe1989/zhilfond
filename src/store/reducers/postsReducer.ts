@@ -8,7 +8,7 @@ const defaultState: PostState = {
     currentPost: 0,
     isChangeModalOpen: false,
     currentBody: '',
-    currentTitle: ''
+    currentTitle: '',
 }
 
 
@@ -37,7 +37,7 @@ export const postsReducer = (state = defaultState, action: PostsAction): PostSta
         case PostsActionTypes.CHANGE_CURRENT_BODY:
             return {...state, currentBody: action.payload}
         case PostsActionTypes.CHANGE_POST:
-            const changePost = ():PostState=>{
+            if (state.currentTitle.length > 0 && state.currentBody.length>0) {
                 const newState = {...state, isChangeModalOpen: false}
                 newState.posts = [...state.posts]
                 for (const item of newState.posts) {
@@ -48,7 +48,7 @@ export const postsReducer = (state = defaultState, action: PostsAction): PostSta
                 }
                 return newState
             }
-            return changePost()
+            return state
         default:
             return state
     }

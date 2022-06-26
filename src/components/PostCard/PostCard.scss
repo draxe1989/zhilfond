@@ -1,6 +1,9 @@
 .post-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: cornflowerblue;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
   border-radius: 1em;
   font-family: Helvetica sans-serif;
   margin-bottom: 1em;

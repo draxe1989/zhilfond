@@ -1,21 +1,10 @@
 import React, {FC, useEffect} from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useDispatch} from "react-redux";
 import PostCard from "../PostCard/PostCard";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import ChangeModal from "../ChangeModal/ChangeModal";
-import {
-    changeCurrentBodyAC,
-    changeCurrentTitleAC,
-    changePostAC,
-    closeChangeModalAC,
-    closeDeleteModalAC,
-    deletePostAC,
-    fetchPosts,
-    openChangeModalAC,
-    openDeleteModalAC
-} from "../../store/action-creators/posts";
-
+import {useActions} from "../../hooks/useActions";
+import './Postlist.scss'
 
 
 const PostsList: FC = () => {
@@ -26,45 +15,48 @@ const PostsList: FC = () => {
         isDeleteModalOpen,
         isChangeModalOpen,
         currentBody,
-        currentTitle
+        currentTitle,
     } = useTypedSelector(state => state.posts)
 
-    const dispatch = useDispatch()
+    const {
+        fetchPosts,
+        openChangeModalAC,
+        openDeleteModalAC,
+        deletePostAC,
+        closeChangeModalAC,
+        closeDeleteModalAC,
+        changePostAC,
+        changeCurrentBodyAC,
+        changeCurrentTitleAC
+    } = useActions()
 
     useEffect(() => {
-        dispatch(fetchPosts())
+        fetchPosts()
     }, [])
 
     const openDeleteModal = (id: number) => {
-        dispatch(openDeleteModalAC(id))
+        openDeleteModalAC(id)
     }
-
     const closeDeleteModal = () => {
-        dispatch(closeDeleteModalAC())
+        closeDeleteModalAC()
     }
-
     const deletePost = () => {
-        dispatch(deletePostAC())
+        deletePostAC()
     }
-
     const closeChangeModal = () => {
-        dispatch(closeChangeModalAC())
+        closeChangeModalAC()
     }
-
-    const openChangeModal = (id: number, title:string, body:string) => {
-        dispatch(openChangeModalAC(id, title, body))
+    const openChangeModal = (id: number, title: string, body: string) => {
+        openChangeModalAC(id, title, body)
     }
-
     const changePost = () => {
-        dispatch(changePostAC())
+        changePostAC()
     }
-
     const changeCurrentTitle = (title: string) => {
-        dispatch(changeCurrentTitleAC(title))
+        changeCurrentTitleAC(title)
     }
-
     const changeCurrentBody = (body: string) => {
-        dispatch(changeCurrentBodyAC(body))
+        changeCurrentBodyAC(body)
     }
 
     if (loading) {
@@ -74,7 +66,7 @@ const PostsList: FC = () => {
         return <h1>ERROR TO FETCH POSTS!</h1>
     }
     return (
-        <div>
+        <div className={'post-list'}>
             {posts.map(post => <PostCard key={post.id} post={post}
                                          openDeleteModal={openDeleteModal}
                                          openChangeModal={openChangeModal}/>)}

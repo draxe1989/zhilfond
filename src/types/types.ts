@@ -31,11 +31,14 @@ interface ChangePostAction {
 
 interface OpenChangeModalAction {
     type: PostsActionTypes.OPEN_CHANGE_MODAL,
-    payload: number
+    id:number,
+    title: string,
+    body:string
 }
 
 interface CloseChangeModalAction {
     type: PostsActionTypes.CLOSE_CHANGE_MODAL,
+
 }
 
 interface OpenDeleteModalAction {
@@ -49,14 +52,13 @@ interface CloseDeleteModalAction {
 
 interface DeletePostAction {
     type: PostsActionTypes.DELETE_POST,
-    payload: number
 }
 
 interface FetchUsersAction {
     type: PostsActionTypes.FETCH_POSTS;
 }
 
-interface FetchUsersSuccesAction {
+interface FetchUsersSuccessAction {
     type: PostsActionTypes.FETCH_POSTS_SUCCESS;
     payload: any[]
 }
@@ -71,14 +73,13 @@ export type PostsAction =
     | DeletePostAction
     | OpenDeleteModalAction
     | FetchUsersAction
-    | FetchUsersSuccesAction
+    | FetchUsersSuccessAction
     | FetchUsersErrorAction
     | ChangeCurrentBodyAction
     | ChangeCurrentTitleAction
     | ChangePostAction
     | OpenChangeModalAction
     | CloseChangeModalAction
-    | any
 
 export interface PostState {
     posts: Post[],

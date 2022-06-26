@@ -30,7 +30,7 @@ const PostsList: FC = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(fetchPosts())
-    })
+    }, [])
     const openDeleteModal = (id: number) => {
         dispatch(openDeleteModalAC(id))
     }
